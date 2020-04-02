@@ -2,6 +2,13 @@ import React, {Component} from "react";
 
 export default class Login extends Component {
 
+    constructor(props) {
+super(props);
+this.state = {
+        isLoggedIn: false, isLoading: false
+    }
+    }
+
     componentDidMount() {
         this.googleSDK();
     }
@@ -44,8 +51,11 @@ export default class Login extends Component {
                 console.log("Image URL: " + profile.getImageUrl());
                 console.log("Email: " + profile.getEmail());
                 //YOUR CODE HERE
+                this.setState({isLoggedIn: true});
+                this.props.history.push('/home');
             }, error => {
-                alert(JSON.stringify(error, undefined, 2));
+                this.setState({isLoggedIn: false});
+                console.log(JSON.stringify(error, undefined, 2));
             });
     };
 

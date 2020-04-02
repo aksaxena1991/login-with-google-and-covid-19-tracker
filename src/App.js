@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState } from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import "./styles.css";
@@ -6,8 +6,12 @@ import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 import Login from "./components/login.component";
 import SignUp from "./components/signup.component";
+import Home from "./components/home.component";
+
 
 function App() {
+const [isLoggedIn, isLoading] = useState(false);
+console.log(isLoggedIn,'anubhav');
   return (
     <Router>
       <div className="App">
@@ -22,6 +26,7 @@ function App() {
                 <li className="nav-item">
                   <Link className="nav-link" to={"/sign-up"}>Sign up</Link>
                 </li>
+                
               </ul>
             </div>
           </div>
@@ -33,6 +38,7 @@ function App() {
               <Route exact path='/' component={SignUp}/>
               <Route path="/sign-in" component={Login}/>
               <Route path="/sign-up" component={SignUp}/>
+              <Route path="/home" component={Home}/>
             </Switch>
           </div>
         </div>
