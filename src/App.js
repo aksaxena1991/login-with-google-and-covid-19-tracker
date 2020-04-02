@@ -10,7 +10,8 @@ import Home from "./components/home.component";
 
 
 function App() {
-const [isLoggedIn, isLoading] = useState(false);
+const [isLoggedIn] = useState(true);
+
 console.log(isLoggedIn,'anubhav');
   return (
     <Router>
@@ -33,7 +34,8 @@ console.log(isLoggedIn,'anubhav');
         </nav>
 
         <div className="auth-wrapper">
-          <div className="auth-inner">
+        <div className ="" >
+// auth - inner
             <Switch>
               <Route exact path='/' component={SignUp}/>
               <Route path="/sign-in" component={Login}/>
