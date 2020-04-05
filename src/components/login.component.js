@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-
+import { MDBContainer,MDBBox, MDBRow, MDBCol,
+     MDBInput, MDBBtn, MDBCardImage,MDBCard, MDBCardHeader, MDBCardBody } from 'mdbreact';
 export default class Login extends Component {
 
     constructor(props) {
@@ -40,7 +41,7 @@ this.state = {
 
     }
     prepareLoginButton = () => {
-        console.log(this.refs.googleLoginBtn);
+        console.log(this);
         this
             .auth2
             .attachClickHandler(this.refs.googleLoginBtn, {}, googleUser => {
@@ -61,34 +62,32 @@ this.state = {
 
     render() {
         return (
-            <form>
-                <h3>Sign In</h3>
-
-                <div className="form-group">
-                    <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email"/>
-                </div>
-
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password"/>
-                </div>
-
-                <div className="form-group">
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="customCheck1"/>
-                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                    </div>
-                </div>
-
-                <button type="submit" className="btn btn-primary btn-block">Submit</button>
-< button className = "btn btn-success btn-block loginBtn loginBtn--google" ref = "googleLoginBtn" onClick = {this.clickMe } > Login with Google </button>
-                
-                <p className="forgot-password text-right">
-                    Forgot
-                    <b >password?</b>
-                </p>
-            </form>
+        <MDBContainer>
+            <MDBRow>
+                <MDBCol col='12' className="offset-md-4">
+                    <MDBCard narrow style={{ width: "25rem", marginTop: "10%" }}>
+                        <MDBCardImage className='view view-cascade gradient-card-header purple-gradient' cascade tag='div'>
+                            <MDBCardHeader tag='h4' className='text-center' color="primary-color">Sign In</MDBCardHeader>
+                        </MDBCardImage>
+                        <MDBCardBody cascade className='text-center'>
+                            <form>
+                                <div className="grey-text">
+                                    <MDBInput label="Type your email"  group type="email" validate error="wrong" success="right" />
+                                    <MDBInput label="Type your password"  group type="password" validate />
+                                </div>
+                                <div className="text-center">
+                                    <MDBBtn >Login</MDBBtn>
+                                    <button type="button" className = "btn btn-danger loginBtn loginBtn--google" ref="googleLoginBtn"  > Login with Google </button>
+                                </div>
+                                <div className="text-center">
+                                    <MDBBox tag='p'>Forgot Password?</MDBBox>
+                                </div>
+                            </form>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+            </MDBRow>
+        </MDBContainer>
         );
     }
 }

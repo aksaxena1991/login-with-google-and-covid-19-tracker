@@ -1,37 +1,38 @@
 import React, {Component} from "react";
-
+import { MDBContainer,MDBBox, MDBRow, MDBCol,
+     MDBInput, MDBBtn, MDBCardImage,MDBCard, MDBCardHeader, MDBCardBody } from 'mdbreact';
 export default class SignUp extends Component {
     render() {
         return (
-            <form>
-                <h3>Sign Up</h3>
-
-                <div className="form-group">
-                    <label>First name</label>
-                    <input type="text" className="form-control" placeholder="First name"/>
-                </div>
-
-                <div className="form-group">
-                    <label>Last name</label>
-                    <input type="text" className="form-control" placeholder="Last name"/>
-                </div>
-
-                <div className="form-group">
-                    <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email"/>
-                </div>
-
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password"/>
-                </div>
-
-                <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
-                <p className="forgot-password text-right">
-                    Already registered
-                    <b>sign in?</b>
-                </p>
-            </form>
+        <MDBContainer>
+            <MDBRow>
+                <MDBCol col='12' className="offset-md-4">
+                    <MDBCard narrow style={{ width: "25rem", marginTop: "10%" }}>
+                        <MDBCardImage className='view view-cascade gradient-card-header purple-gradient' cascade tag='div'>
+                            <MDBCardHeader tag='h4' className='text-center' color="primary-color">Sign Up</MDBCardHeader>
+                        </MDBCardImage>
+                        <MDBCardBody cascade className='text-center'>
+                            <form>
+                                <div className="grey-text">
+                                    <MDBInput label="First Name" group error="wrong" success="right" />
+                                    <MDBInput label="Last Name" group error="wrong" success="right"/>
+                                    <MDBInput label="Type your email"  group type="email" validate error="wrong" success="right" />
+                                    <MDBInput label="Type your password"  group type="password" validate />
+                                </div>
+                                <div className="text-center">
+                                    <MDBBtn >Sign Up</MDBBtn>
+                                    
+                                </div>
+                                <div className="text-center">
+                                    <MDBBox tag='p'>Already Registered Sign In?</MDBBox>
+                                </div>
+                            </form>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+            </MDBRow>
+        </MDBContainer>
+            
         );
     }
 }
