@@ -1,26 +1,13 @@
-.App {
-    text-align: center;
-}
-
-.App-logo {
-    height: 40vmin;
-}
-
-.App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-}
-
-.App-link {
-    color: #09d3ac;
-}
-
-.map {
+.signUpBackground {
+    background-image: url("https://3718aeafc638f96f5bd6-d4a9ca15fc46ba40e71f94dec0aad28c.ssl.cf1.rackcdn.com/journal-immunology.png");
     height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+body,
+html {
+    height: 100%;
 }
