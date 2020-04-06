@@ -6,13 +6,11 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Login from "./components/login.component";
 import SignUp from "./components/signup.component";
 import Home from "./components/home.component";
-
-
 class App extends Component{
     render(){
       return(
         
-        
+      
         <Router>
           <Switch>
             <Route exact path='/' component={SignUp}/>
@@ -22,9 +20,6 @@ class App extends Component{
         </Switch>
         </Router>
       
-    
-      
-    
       );
     }
 }

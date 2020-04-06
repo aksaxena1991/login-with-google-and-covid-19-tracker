@@ -4,10 +4,9 @@ import { MDBContainer,MDBBox, MDBRow, MDBCol,
 export default class Login extends Component {
 
     constructor(props) {
-super(props);
-this.state = {
-        isLoggedIn: false, isLoading: false
-    }
+        super(props);
+        this.state = {
+            isLogged: false        }
     }
 
     componentDidMount() {
@@ -41,22 +40,19 @@ this.state = {
 
     }
     prepareLoginButton = () => {
-        console.log(this);
-        this
-            .auth2
-            .attachClickHandler(this.refs.googleLoginBtn, {}, googleUser => {
+        
+        this.auth2.attachClickHandler(this.refs.googleLoginBtn, {}, googleUser => {
                 let profile = googleUser.getBasicProfile();
-                console.log("Token || " + googleUser.getAuthResponse().id_token);
-                console.log("ID: " + profile.getId());
-                console.log("Name: " + profile.getName());
-                console.log("Image URL: " + profile.getImageUrl());
-                console.log("Email: " + profile.getEmail());
+                
                 //YOUR CODE HERE
-                this.setState({isLoggedIn: true});
-                this.props.history.push('/home');
+                
+                this.props.history.push({
+                    pathname : '/home',
+                    state:profile
+                });
             }, error => {
-                this.setState({isLoggedIn: false});
-                console.log(JSON.stringify(error, undefined, 2));
+                
+                
             });
     };
 

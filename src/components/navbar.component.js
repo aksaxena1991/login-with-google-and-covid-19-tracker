@@ -3,13 +3,21 @@ import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNav
 MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
 import { Link } from 'react-router-dom';
 
+
 class CustomNavbar extends Component {
-state = {
-  isOpen: false
-};
+
+constructor(props){
+  super(props);
+  this.state = {
+    isOpen: false
+  };
+}
 
 toggleCollapse = () => {
   this.setState({ isOpen: !this.state.isOpen });
+}
+componentDidMount(){
+console.log(this.props);
 }
 
 render() {
@@ -17,7 +25,11 @@ render() {
     
       <MDBNavbar color="default-color" dark expand="md">
         <MDBNavbarBrand>
-          <strong className="white-text" >Navbar</strong>
+          <Link className="white-text" to={"/sign-in"}>
+            <strong>Covid 19 Tracker</strong>
+          </Link>
+
+          
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
@@ -62,7 +74,9 @@ render() {
                   <MDBIcon icon="user" />
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
-                  <MDBDropdownItem href="#!">Action</MDBDropdownItem>
+                  <MDBDropdownItem>
+                    <MDBNavLink className="black-text" to={'/'}>Sign In</MDBNavLink>
+                  </MDBDropdownItem>
                   <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
                   <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
                   <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>

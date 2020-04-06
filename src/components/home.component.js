@@ -3,9 +3,10 @@ import L from 'leaflet';
 import {Map, TileLayer, Marker, Popup} from 'react-leaflet';
 import axios from 'axios';
 import CustomNavbar from "./navbar.component";
-import { MDBContainer,MDBBox, MDBRow, MDBCol, MDBJumbotron ,MDBTable,MDBIcon,
+import { MDBContainer,MDBBox, MDBRow, MDBCol, MDBJumbotron ,MDBTable,
   MDBTableBody,MDBTableHead,
-     MDBInput, MDBBtn, MDBCardImage,MDBCard, MDBCardHeader, MDBCardBody } from 'mdbreact';
+      MDBCardImage,MDBCard, MDBCardHeader, MDBCardBody } from 'mdbreact';
+
 
 var myIcon = L.icon({
   iconUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAApCAYAAADAk4LOAAAFgUlEQVR4Aa' +
@@ -61,12 +62,13 @@ export default class Home extends Component {
       statecode : ""
     },
     zoom: 5,
-    isLoading:false,
+    
     collapseID: "collapse1",
     stateApiResponse:[],
     districtApiResponse:[],
     completeInfo:[]
   }
+  
   stateLatLong =  null;
   constructor(props){
     super(props);
@@ -89,7 +91,7 @@ this.rowClickHandler = this.rowClickHandler.bind(this);
     console.log(this.state);
     axios.get(`https://api.covid19india.org/state_district_wise.json`).then(res1 => {
       this.setState({districtApiResponse:res1.data});
-      this.setState({isLoading:true})
+      
       axios.get(`https://api.covid19india.org/data.json`).then(res2 => {
         this.setState({stateApiResponse: res2.data});
         
@@ -128,7 +130,7 @@ this.rowClickHandler = this.rowClickHandler.bind(this);
                 });
                 let stateLatLong = this.stateLatLong;
                 this.setState({completeInfo:stateLatLong});
-                this.setState({isLoading: false});
+                
               }
             });
           });
@@ -177,8 +179,8 @@ return ( <tr key={index} onClick={() => this.rowClickHandler(index, val)}>
 
     return (
       
-    <MDBJumbotron fluid>
-    <div className="anubhav" hidden={!this.state.isLoading}>saxena</div>
+    <MDBJumbotron>
+    
       <MDBContainer>
       <CustomNavbar/>
       <MDBRow style={{ width: "100%", marginTop: "1%" }}>
