@@ -9,18 +9,15 @@ import Home from "./components/home.component";
 class App extends Component{
     render(){
       return(
-        
-      
-        <Router>
-          <Switch>
-            <Route exact path='/' component={SignUp}/>
-            <Route path="/sign-in" component={Login}/>
-            <Route path="/sign-up" component={SignUp}/>
-            <Route path="/home" component={Home}/>
+      <Router>
+        <Switch>
+          <Route exact path='/' component={SignUp}/>
+          <Route path="/sign-in" component={Login}/>
+          <Route path="/sign-up" component={SignUp}/>
+          <Route path="/home" component={Home}/>
         </Switch>
-        </Router>
-      
-      );
+      </Router>
+        );
     }
 }
 export default App;
