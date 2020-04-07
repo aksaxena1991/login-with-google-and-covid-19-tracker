@@ -71,7 +71,7 @@ export default class SignUp extends Component {
                     this.setState({
                         alertType: {
                             hide: false,
-                            color: 'error',
+                            color: 'danger',
                             message: e.toString()
                         }
                     });

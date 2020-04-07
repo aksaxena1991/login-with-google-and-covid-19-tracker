@@ -1,17 +1,126 @@
 import React, {Component} from "react";
-import { MDBContainer,MDBBox, MDBRow, MDBCol,
+import {
+    MDBNavLink,
+    MDBRow,
+    MDBCol,
+    MDBCardText,
+
+    MDBIcon,
+    MDBAlert,
      MDBInput, MDBBtn, MDBCardImage,MDBCard, MDBCardHeader, MDBCardBody } from 'mdbreact';
+import firebaseInstance from '../config/firebase.config';
+
 export default class Login extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            isLogged: false        }
+            email:'',
+        password:'',
+        currentIndex: -1,
+        errorMessages: [],
+        alertType: {
+                hide: true,
+                color: 'primary',
+                message: ''
+            },
+            
+           }
     }
 
+    
     componentDidMount() {
         this.googleSDK();
     }
+checkObjectAlreadyExits = (arr, obj) => {
+    let index = -1;
+       const mark = arr.some(function(item, idx){
+        if(JSON.stringify(obj) === JSON.stringify(item)) {
+            index = idx;
+            return true;
+        } else {
+            return false;
+        }
+            // return arr.indexOf(item) != idx
+        });
+this.setState({currentIndex: index})
+        
+        return mark
+    }
+updateInput = (evt) => {
+    
+        
+        if ((evt.target.value === null) || (evt.target.value === '')) {
+            const state = this.state;
+            if(!this.checkObjectAlreadyExits(this.state.errorMessages,{
+                [evt.target.name]:"Please enter your "+evt.target.name + "."
+            })) {
+                
+                state.errorMessages.push({
+                [evt.target.name]:"Please enter your "+evt.target.name + "."
+            });
+            
+            }
+            this.setState(state);
+} else if ((evt.target.value !== '') && (evt.target.value !== null)) {
+            const state = this.state;
+            state[evt.target.name] = evt.target.value;
+            this.setState(state);
+} else {
+const state = this.state;
+
+            state.errorMessages.splice(this.state.currentIndex, 1);
+this.setState(state);
+        }
+
+console.log(this.state);
+        
+    }
+appLogin = () => { 
+    const dbInst = firebaseInstance.firestore();
+if ((this.state.email === null) || (this.state.email === '') || (this.state.password === null) || (this.state.password === '')) {
+    return false;
+} else {
+dbInst
+    .collection('users')
+    .where('email', '==', this.state.email)
+    .where('password', '==', this.state.password)
+    .get()
+    .then((resp) => {
+        if (resp.docs.length > 0) {
+            this.setState({
+                alertType: {
+                    hide: false,
+                    color: 'success',
+                    message: 'Thank you for login here!'
+                }
+            });
+            setTimeout(() => {
+                this
+                    .props
+                    .history
+                    .push('/home');
+            }, 1500);
+        } else {
+            this.setState({
+                alertType: {
+                    hide: false,
+                    color: 'danger',
+                    message: 'You are not a registered user.'
+                }
+            });
+            setTimeout(() => {
+                this
+                    .props
+                    .history
+                    .push('/sign-up');
+            }, 1500);
+        }
+    });
+}
+
+    this.setState({currentIndex: -1});
+}
     googleSDK() {
         window["googleSDKLoaded"] = () => {
             window["gapi"].load("auth2", () => {
@@ -58,32 +167,71 @@ export default class Login extends Component {
 
     render() {
         return (
-        <MDBContainer>
+        <div className="signUpBackground">
             <MDBRow>
-                <MDBCol col='12' className="offset-md-4">
-                    <MDBCard narrow style={{ width: "25rem", marginTop: "10%" }}>
-                        <MDBCardImage className='view view-cascade gradient-card-header purple-gradient' cascade tag='div'>
-                            <MDBCardHeader tag='h4' className='text-center' color="primary-color">Sign In</MDBCardHeader>
-                        </MDBCardImage>
+            <MDBCol size="6" >
+                    <MDBCard narrow style={{
+                            width: "25rem",
+                            marginTop: "10%",
+                            opacity:0.85,
+                            margin: "30% 0% 0% 30%"
+                        }}>
+                        <MDBCardText tag="h3" className="text-center">
+                            Codiv 19 Tracker <strong>Go Corona Go!</strong>
+                        </MDBCardText>
+                        </MDBCard>
+                    </MDBCol>
+                <MDBCol size="6">
+                    <MDBCard narrow
+                            style={{
+                            width: "25rem",
+                            marginTop: "10%",
+                            opacity:0.85
+                        }}>
+                        <MDBCardImage
+                                className='view view-cascade gradient-card-header purple-gradient'
+                                cascade
+                                tag='div'>
+                                <MDBCardHeader tag='h4' className='text-left' color="primary-color">
+                                <MDBIcon icon="user" size="1x" pull="left" border />
+                                Sign In:</MDBCardHeader>
+                            </MDBCardImage>
                         <MDBCardBody cascade className='text-center'>
                             <form>
                                 <div className="grey-text">
-                                    <MDBInput label="Type your email"  group type="email" validate error="wrong" success="right" />
-                                    <MDBInput label="Type your password"  group type="password" validate />
+                                    <MDBInput label="Type your email" name='email' group type="email" onChange={(evt) => {this.updateInput(evt)}} validate error="wrong" success="right" />
+                                    
+
+                                    <MDBInput label="Type your password" name='password'  onChange={(evt) => {this.updateInput(evt)}} group type="password" validate />
                                 </div>
                                 <div className="text-center">
-                                    <MDBBtn >Login</MDBBtn>
+                                    <MDBBtn  onClick={() => this.appLogin()}>Login</MDBBtn>
                                     <button type="button" className = "btn btn-danger loginBtn loginBtn--google" ref="googleLoginBtn"  > Login with Google </button>
                                 </div>
                                 <div className="text-center">
-                                    <MDBBox tag='p'>Forgot Password?</MDBBox>
+                                    <span style={{display: 'inline-flex'}}>
+                                    <MDBNavLink className="black-text" to={'/sign-in'}>Forgot Password?</MDBNavLink> <strong style={{
+                                            lineHeight: '2.5rem'
+                                    }}> | </strong>
+                                    <MDBNavLink className="black-text" to={'/sign-up'}>Sign Up</MDBNavLink>
+                                    </span>
                                 </div>
                             </form>
+                            <hr/>
+                                <div className='text-center' hidden={this.state.alertType.hide}>
+                                    <MDBAlert
+                                        color={this.state.alertType.color}
+                                        style={{
+                                        width: "25rem !important"
+                                    }}>
+                                        <strong>{this.state.alertType.message}</strong>
+                                    </MDBAlert>
+                                </div>
                         </MDBCardBody>
                     </MDBCard>
                 </MDBCol>
             </MDBRow>
-        </MDBContainer>
+        </div>
         );
     }
 }

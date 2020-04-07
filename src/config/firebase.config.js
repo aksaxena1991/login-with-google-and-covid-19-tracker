@@ -1,5 +1,6 @@
 import firebase from 'firebase';
-
+import 'firebase';
+console.log(firebase);
 const firebaseInstance = firebase.initializeApp({
     apiKey: "AIzaSyAgQetVokq4SCHyAsf-fEjTRxqPwRReaIs",
     authDomain: "tracker-covid-19.firebaseapp.com",
