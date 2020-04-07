@@ -3,7 +3,7 @@ import L from 'leaflet';
 import {Map, TileLayer, Marker, Popup} from 'react-leaflet';
 import axios from 'axios';
 import CustomNavbar from "./navbar.component";
-import { MDBContainer,MDBBox, MDBRow, MDBCol, MDBJumbotron ,MDBTable,
+import { MDBBox, MDBRow, MDBCol, MDBTable,
   MDBTableBody,MDBTableHead,
       MDBCardImage,MDBCard, MDBCardHeader, MDBCardBody } from 'mdbreact';
 
@@ -178,13 +178,12 @@ return ( <tr key={index} onClick={() => this.rowClickHandler(index, val)}>
 
 
     return (
-      
-    <MDBJumbotron>
-    
-      <MDBContainer>
+      <div>
       <CustomNavbar/>
-      <MDBRow style={{ width: "100%", marginTop: "1%" }}>
-        <MDBCol size="6">
+      
+< MDBBox display = "flex" justifyContent = "center" style = {{ width: "100%", marginTop: "1%" }} >
+<MDBRow>
+        <MDBCol md="6">
               <MDBCard narrow>
                 <MDBCardImage className='view view-cascade gradient-card-header purple-gradient' cascade tag='div'>
                     <MDBCardHeader tag='h4' className='text-center'>Statistics of India of Covid 19</MDBCardHeader>
@@ -210,7 +209,7 @@ return ( <tr key={index} onClick={() => this.rowClickHandler(index, val)}>
                 </MDBCardBody>
               </MDBCard>  
         </MDBCol>
-        <MDBCol size="6">
+        <MDBCol md="6">
           <div className="text-center">
             <MDBCard narrow>
               <MDBCardImage className='view view-cascade gradient-card-header purple-gradient' cascade tag='div'>
@@ -231,10 +230,10 @@ return ( <tr key={index} onClick={() => this.rowClickHandler(index, val)}>
             
           </div>
         </MDBCol>
-      </MDBRow>
-</MDBContainer>
-</MDBJumbotron>
-          
+    </MDBRow>
+        </MDBBox> 
+        
+    </div>
     );
   }
 }
