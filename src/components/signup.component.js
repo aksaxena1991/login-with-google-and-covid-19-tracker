@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {
     MDBCardText,
     MDBIcon,
+    MDBBox,
     MDBRow,
     MDBCol,
     MDBInput,
@@ -98,10 +99,11 @@ export default class SignUp extends Component {
     render() {
         return (
             <div className="signUpBackground">
+             <MDBBox className="container-fluid" tag="div">
                 <MDBRow>
-                    <MDBCol size="6" >
+                    <MDBCol className="offset-2 col-md-4" >
                     <MDBCard narrow style={{
-                            width: "25rem",
+                           
                             marginTop: "10%",
                             opacity:0.85,
                                 margin: "30% 0% 0% 30%"
@@ -111,11 +113,11 @@ export default class SignUp extends Component {
                         </MDBCardText>
                         </MDBCard>
                     </MDBCol>
-                    <MDBCol size='6'>
+                    <MDBCol className="col-md-4">
                         <MDBCard
                             narrow
                             style={{
-                            width: "25rem",
+                            
                             marginTop: "10%",
                             opacity:0.85
                         }}>
@@ -181,7 +183,8 @@ export default class SignUp extends Component {
                         </MDBCard>
                     </MDBCol>
                 </MDBRow>
-            </div>
+           </MDBBox>
+                </div>
 
         );
     }

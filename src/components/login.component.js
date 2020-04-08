@@ -7,7 +7,7 @@ import {
 
     MDBIcon,
     MDBAlert,
-     MDBInput, MDBBtn, MDBCardImage,MDBCard, MDBCardHeader, MDBCardBody } from 'mdbreact';
+     MDBInput, MDBBtn, MDBCardImage,MDBCard, MDBCardHeader, MDBCardBody, MDBBox } from 'mdbreact';
 import firebaseInstance from '../config/firebase.config';
 
 export default class Login extends Component {
@@ -168,23 +168,24 @@ dbInst
     render() {
         return (
         <div className="signUpBackground">
-            <MDBRow>
-            <MDBCol size="6" >
+            <MDBBox className="container-fluid" tag="div">
+            <MDBRow >
+            <MDBCol className="offset-2 col-md-4" >
                     <MDBCard narrow style={{
-                            width: "25rem",
+                            
                             marginTop: "10%",
                             opacity:0.85,
-                            margin: "30% 0% 0% 30%"
+                            margin: "30% 0% 0% 20%"
                         }}>
                         <MDBCardText tag="h3" className="text-center">
                             Codiv 19 Tracker <strong>Go Corona Go!</strong>
                         </MDBCardText>
                         </MDBCard>
                     </MDBCol>
-                <MDBCol size="6">
+                <MDBCol className=" col-md-4" >
                     <MDBCard narrow
                             style={{
-                            width: "25rem",
+                            
                             marginTop: "10%",
                             opacity:0.85
                         }}>
@@ -231,7 +232,8 @@ dbInst
                     </MDBCard>
                 </MDBCol>
             </MDBRow>
-        </div>
+       </MDBBox>
+            </div>
         );
     }
 }

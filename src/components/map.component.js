@@ -22,7 +22,7 @@ const WorldMap = (props) => {
             bootstrapURLKeys = {{ 
                 language : 'en',
                 region : 'en',
-                key : 'AIzaSyCYv382MdZegnrbJgZqGl236p7GMLhmekI'
+key : 'AIzaSyA6LLUl9_aP6aIDOAnypFpyC3FK6wxmSHg'
                 }
 }
           defaultCenter={center}
