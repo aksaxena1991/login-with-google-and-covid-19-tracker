@@ -3,7 +3,7 @@ import axios from 'axios';
 import Chart from "react-google-charts";
 import CustomNavbar from "./navbar.component";
 import { MDBBox, MDBRow } from 'mdbreact';
-
+import WorldNews from './worldNews.component'
 export default class Home extends Component {
   object = {
     totalCases:0,
@@ -415,7 +415,9 @@ return ( <tr key={index} onClick={() => this.rowClickHandler(index, val)}>
           </MDBRow>
 </MDBBox>
     
-        
+        <MDBBox>
+        <WorldNews/>
+        </MDBBox>
     </MDBBox >
     );
   }
