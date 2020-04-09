@@ -85,25 +85,29 @@ this.rowClickHandler = this.rowClickHandler.bind(this);
         Object.entries(res1.data).forEach(([k1,v1]) => {
           
           Object.entries(res2.data.statewise).forEach(([k2,v2]) => {
-            axios({
-              "method": "GET",
-              "url": "https://geoapify-platform.p.rapidapi.com/v1/geocode/search",
-              "headers": {
-                "content-type": "application/octet-stream",
-                "x-rapidapi-host": "geoapify-platform.p.rapidapi.com",
-                "x-rapidapi-key": "4afa9d804fmshb82f26d7850288fp1fe303jsn995d5ec4f72c"
-              },
-              "params": {
-                "lang": "en",
-                "apiKey": "700109c41a4640e98b79466d164cba52",
-                "text": k1
-              }
-            }).then((res3) => {
-              if ((k1 === res3.data.features[0]['properties'].state) && (v2.state === res3.data.features[0]['properties'].state)) {
+            // axios({
+            //   "method": "GET",
+            //   "url": "https://geoapify-platform.p.rapidapi.com/v1/geocode/search",
+            //   "headers": {
+            //     "content-type": "application/octet-stream",
+            //     "x-rapidapi-host": "geoapify-platform.p.rapidapi.com",
+            //     "x-rapidapi-key": "4afa9d804fmshb82f26d7850288fp1fe303jsn995d5ec4f72c"
+            //   },
+            //   "params": {
+            //     "lang": "en",
+            //     "apiKey": "700109c41a4640e98b79466d164cba52",
+            //     "text": k1
+            //   }
+            // }).then((res3) => {
+            //   if ((k1 === res3.data.features[0]['properties'].state) && (v2.state === res3.data.features[0]['properties'].state)) {
                 
-                this.stateLatLong.push({
-                  lat:res3.data.features[0]['properties'].lat,
-                  lng : res3.data.features[0]['properties'].lon,
+                
+                
+            //   }
+            // });
+            this.stateLatLong.push({
+                  lat:28,
+                  lng : 77,
                   state:k1,
                   active:v2.active,
                   confirmed : v2.confirmed,
@@ -117,9 +121,6 @@ this.rowClickHandler = this.rowClickHandler.bind(this);
                 });
                 let stateLatLong = this.stateLatLong;
                 this.setState({completeInfo:stateLatLong});
-                
-              }
-            });
           });
         });
       });
@@ -413,6 +414,9 @@ return ( <tr key={index} onClick={() => this.rowClickHandler(index, val)}>
           </div>
           
           </MDBRow>
+</MDBBox>
+<MDBBox>
+<WorldNews/>
 </MDBBox>
     
         <MDBBox>
