@@ -44,9 +44,14 @@ class WorldNews extends Component {
   }
   render(){
     
-    return(<div>
-        <WorldMap/>
-        </div>);
+    return(
+      <div className="row" style={{marginTop: "1%"}}>
+        <div className="col-12 col-lg-6 col-xl"></div>
+        <div className="col-12 col-lg-6 col-xl">
+          <WorldMap/>
+        </div>
+      </div>
+    );
   }
 }
 export default WorldNews;
