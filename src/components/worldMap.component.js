@@ -40,7 +40,7 @@ componentDidUpdate(prevProps, prevState) {
   
   componentDidMount(){
   window.L.mapbox.accessToken = 'pk.eyJ1IjoiYWtzYXhlbmExOTkxIiwiYSI6ImNrOHQ4eHd1eDA0dGIzZnBlbmFiY3dmMTkifQ.x7j3H6m1hA1JP9A6pm4hJQ';
-  this.map = window.L.mapbox.map(this.state.mapId).addLayer(window.L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+  this.map = window.L.mapbox.map(this.state.mapId, 'mapbox.streets')
 
   
 
