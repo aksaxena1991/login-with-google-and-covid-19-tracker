@@ -17,7 +17,7 @@ toggleCollapse = () => {
   this.setState({ isOpen: !this.state.isOpen });
 }
 componentDidMount(){
-console.log(this.props);
+
 }
 
 render() {
