@@ -4,7 +4,6 @@ import Chart from "react-google-charts";
 import CustomNavbar from "./navbar.component";
 import { MDBBox, MDBRow } from 'mdbreact';
 import WorldNews from './worldNews.component';
-
 class Home extends Component {
   
   object = {
@@ -46,7 +45,10 @@ class Home extends Component {
           totalDeath:0,
           totalRecovered:0,
         },
-        coordinatedData: []
+        coordinatedData: [],
+        css:{
+          hidden:false
+        }
     }
   }
   tileChartData = (res) => {
@@ -146,7 +148,8 @@ if ((this.state.data.stateData != null) && (this.state.data.stateDistrictData !=
 
     return(
     <MDBBox tag="div">
-      <CustomNavbar/>
+    
+    <CustomNavbar/>
       {
           (this.state.coordinatedData.length > 0) && 
           <WorldNews coordinatedData = {this.state.coordinatedData}/>
