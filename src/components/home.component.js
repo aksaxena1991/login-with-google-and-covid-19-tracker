@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import axios from 'axios';
 import Chart from "react-google-charts";
 import CustomNavbar from "./navbar.component";
 import { MDBBox, MDBRow } from 'mdbreact';
@@ -8,10 +8,6 @@ import WorldNews from './worldNews.component';
 class Home extends Component {
   
   object = {
-    totalCases:0,
-    totalActive:0,
-    totalDeath:0,
-    totalRecovered:0,
     color:{
       deathColor:'#CC0000',
       activeColor:'#FF8800',
@@ -19,15 +15,86 @@ class Home extends Component {
       totalColor:'#0099CC'
     }
   }
+  titleChartTotalCasesData = [
+  ['x', 'Total cases']
+  ];
+  titleChartDailyRecoveredData = [
+    ['x', 'Total Recovered']
+  ];
+  titleChartDailyDeathData = [
+    ['x', 'Total Death']
+  ];
+  titleChartDailyActiveData = [
+    ['x', 'Total Active']
+  ];
   constructor(props){
     super(props);
+    this.state = {
+        url:{
+          stateDistrictWiseAPIURL: 'https://api.covid19india.org/state_district_wise.json',
+          stateWiseAPIURL:'https://api.covid19india.org/data.json',
+        },
+        data: {
+          stateDistrictData: null,
+          stateData: null
+        },
+        object:{
+          totalCases:0,
+          totalActive:0,
+          totalDeath:0,
+          totalRecovered:0,
+        }
+    }
+  }
+  tileChartData = (res) => {
+
+  res.cases_time_series.map((item,key)=> {
+    const state = this.state;
+    state.object.totalCases = +parseInt(item.totalconfirmed);
+    state.object.totalCases = +parseInt(item.totalconfirmed);
+    state.object.totalActive = +(parseInt(item.totalconfirmed) - parseInt(item.totalrecovered) - parseInt(item.totaldeceased));
+    state.object.totalDeath = +parseInt(item.totaldeceased);
+    state.object.totalRecovered = +parseInt(item.totalrecovered);
+    this.setState({state})
+    
+    this.titleChartTotalCasesData.push([key, parseInt(item.totalconfirmed)]);
+    this.titleChartDailyDeathData.push([key,parseInt(item.totaldeceased)])
+    this.titleChartDailyRecoveredData.push([key,parseInt(item.totalrecovered)])
+    this.titleChartDailyActiveData.push([key, (parseInt(item.totalconfirmed) - parseInt(item.totalrecovered) - parseInt(item.totaldeceased))])
+  });
+  
+  
   }
   
-  
-  componentDidUpdate(){
-  
+  getStateDistrictResponse = () => {
+    axios.get(this.state.url.stateDistrictWiseAPIURL).then((response) => {
+    this.setState({data:{
+      ...this.state.data,
+      stateDistrictData: response.data
+    }});
+    });
+  };
+  getStateWiseResponse = () => {
+    axios.get(this.state.url.stateWiseAPIURL).then((response) => {
+      this.setState({data:{
+        ...this.state.data,
+        stateData: response.data
+    }});
+    this.tileChartData(response.data);
+    });
+  };
+  componentWillMount() {
+    this.getStateDistrictResponse();
+    this.getStateWiseResponse();
+    
+    
+    
+  }
+  componentDidUpdate() {
+    
   }
   render(){
+
     return(
     <MDBBox tag="div">
       <CustomNavbar/>
@@ -48,7 +115,7 @@ class Home extends Component {
 
                     
                 <span className = "h2 mb-0" style={{color: "#0099CC"}} >
-                     {this.object.totalCases}
+                     {this.state.object.totalCases}
                     </span>
 
                     
@@ -103,7 +170,7 @@ class Home extends Component {
 
                     
 < span className = "h2 mb-0" style = {{color: '#CC0000'}} >
-                     {this.object.totalDeath}
+                     {this.state.object.totalDeath}
                     </span>
 
                     
@@ -158,7 +225,7 @@ class Home extends Component {
 
                     
                     <span className="h2 mb-0" style={{color: '#007E33'}}>
-                     {this.object.totalRecovered}
+                     {this.state.object.totalRecovered}
                     </span>
 
                     
@@ -213,7 +280,7 @@ class Home extends Component {
 
                     
                     <span className="h2 mb-0" style={{color: '#FF8800'}}>
-                     {this.object.totalActive}
+                     {this.state.object.totalActive}
                     </span>
 
                     
