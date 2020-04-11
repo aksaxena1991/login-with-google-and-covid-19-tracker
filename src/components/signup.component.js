@@ -101,19 +101,19 @@ export default class SignUp extends Component {
             <div className="signUpBackground">
              <MDBBox className="container-fluid" tag="div">
                 <MDBRow>
-                    <MDBCol className="offset-2 col-md-4" >
+                    <MDBCol className="col-12 col-lg-6 col-xl" >
                     <MDBCard narrow style={{
                            
-                            marginTop: "10%",
+                            
                             opacity:0.85,
-                                margin: "30% 0% 0% 30%"
+                            margin: "30% 0% 0% 0%"
                         }}>
                         <MDBCardText tag="h3" className="text-center">
                             Codiv 19 Tracker <strong>Go Corona Go!</strong>
                         </MDBCardText>
                         </MDBCard>
                     </MDBCol>
-                    <MDBCol className="col-md-4">
+                    <MDBCol className="col-12 col-lg-6 col-xl">
                         <MDBCard
                             narrow
                             style={{

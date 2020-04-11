@@ -1,8 +1,8 @@
 {
-  "globalDependencies": {
-    "axios": "registry:dt/axios#0.9.1+20161016142654",
-    "bootstrap": "registry:dt/bootstrap#3.3.5+20160726204056",
-    "firebase": "registry:dt/firebase#2.4.1+20160510002910",
-    "react-router-dom": "registry:dt/react-router-dom#4.0.0+20170323201651"
-  }
+    "globalDependencies": {
+        "axios": "registry:dt/axios#0.9.1+20161016142654",
+        "bootstrap": "registry:dt/bootstrap#3.3.5+20160726204056",
+        "firebase": "registry:dt/firebase#2.4.1+20160510002910",
+        "react-router-dom": "registry:dt/react-router-dom#4.0.0+20170323201651"
+    }
 }
