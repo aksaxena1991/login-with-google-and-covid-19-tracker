@@ -64,7 +64,7 @@ componentDidUpdate(prevProps, prevState) {
   render(){
     
     return(
-      <div id="map" style={{ height: '65vh',width:'100vw', background: 'grey' }} ></div>
+      <div id="map" style={{ height: '65vh',width:'99vw', background: 'grey' }} ></div>
       );
   }
 }

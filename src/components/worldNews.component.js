@@ -21,7 +21,7 @@ this.setState({coordinatedData: nextProps.coordinatedData});
   render(){
     
     return(
-      <div className="row" style={{marginTop: "1%"}}>
+      <div className="container-fluid" style={{marginTop: "1%"}}>
         {this.state.coordinatedData.length > 0 && 
          <WorldMap coordinatedData={this.state.coordinatedData}/>
         }
