@@ -4,6 +4,7 @@ import Chart from "react-google-charts";
 import CustomNavbar from "./navbar.component";
 import { MDBBox, MDBRow } from 'mdbreact';
 import WorldNews from './worldNews.component';
+import Grid from './grid.component';
 class Home extends Component {
   
   object = {
@@ -378,7 +379,12 @@ if ((this.state.data.stateData != null) && (this.state.data.stateDistrictData !=
           </div>
           
           </MDBRow>
-      </MDBBox>
+      
+      <MDBRow>
+      <Grid/>
+      </MDBRow>
+      
+          </MDBBox>
                         
       
       
