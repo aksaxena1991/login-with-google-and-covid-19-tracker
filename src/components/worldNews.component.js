@@ -14,7 +14,7 @@ class WorldNews extends Component {
 
   componentWillReceiveProps(nextProps, nextContext) {
 this.setState({coordinatedData: nextProps.coordinatedData});
-    // console.log(nextProps.coordinatedData)
+    
   }
   componentDidUpdate(props) {
   }

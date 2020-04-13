@@ -381,7 +381,10 @@ if ((this.state.data.stateData != null) && (this.state.data.stateDistrictData !=
           </MDBRow>
       
       <MDBRow>
-      <Grid/>
+      {(this.state.data.stateDistrictData !== null) && 
+        <Grid stateDistrictData={this.state.data.stateDistrictData}/>
+      }
+      
       </MDBRow>
       
           </MDBBox>
