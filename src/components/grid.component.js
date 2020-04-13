@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {MDBBox, MDBRow} from 'mdbreact';
-
+import MiniMap from './minimap.component';
+import Graph from './graph.component';
 const expendable = (evt) => {
      let showClass = evt.target.nextElementSibling.className.indexOf('show');
     if(showClass < 0) {
@@ -46,7 +47,7 @@ function ListItems(props) {
                                         <tbody>
                                             <tr>
                                                 <td>{val2.data.confirmed}</td>
-                                                <td>New <span class="badge badge-danger">{val2.data.delta.confirmed}</span></td>
+                                                <td>New <span className="badge badge-danger">{val2.data.delta.confirmed}</span></td>
                                                 <td>{val2.data.lastupdatedtime}</td>
                                             </tr>
                                         </tbody>
@@ -75,11 +76,6 @@ class Grid extends Component {
         
         
     }
-    componentWillReceiveProps(props){
-        
-
-        
-    }
     componentDidUpdate(props){
         if(props.stateDistrictData !== null & props.stateDistrictData !== undefined) {
             this.counter++;
@@ -87,9 +83,6 @@ class Grid extends Component {
                 this.arrayFromObject(props.stateDistrictData);
             }
         }
-
-
-        
     }
     
     arrayFromObject = (obj) => {
@@ -127,15 +120,22 @@ class Grid extends Component {
     }
     
     render() {
-        
-        // console.log(this.state);
         return (
             <MDBBox className="container-fluid" style = {{ width: "100%", marginTop: "1%" }}>
-            <MDBRow tag="div" className="col-12 col-lg-6 col-xl">
-            <div className="list-group">
-                <ListItems gridData={this.state.gridData}/>
-            </div>
-            </MDBRow>
+                <MDBRow tag="div">
+                    <MDBBox className="col-12 col-lg-6 col-xl">
+                        <h4>Corona (Covid-19) Impacted Union Territories & Provinces of India</h4>
+                        <ListItems gridData={this.state.gridData}/>
+                    </MDBBox>
+                    <MDBBox className="col-12 col-lg-6 col-xl">
+                        <h4>Corona (Covid-19) Impacted Districts according to their province name</h4>
+                        <MiniMap mapData={this.state.gridData}/>
+                    </MDBBox>
+                    <MDBBox className="col-12 col-lg-6 col-xl">
+                        <h4>Visualization of Corona (Covid-19) Impacted Districts according to their province name</h4>
+                        <Graph/>
+                    </MDBBox>
+                </MDBRow>
             </MDBBox>
                 );
 }

@@ -213,8 +213,6 @@ if ((this.state.data.stateData != null) && (this.state.data.stateDistrictData !=
 
           </div>
           <div className="col-12 col-lg-6 col-xl">
-
-            
             <div className="card">
               <div className="card-body">
                 <div className="row align-items-center">
@@ -226,7 +224,7 @@ if ((this.state.data.stateData != null) && (this.state.data.stateDistrictData !=
                     </h6>
 
                     
-< span className = "h2 mb-0" style = {{color: '#CC0000'}} >
+          <span className = "h2 mb-0" style = {{color: '#CC0000'}} >
                      {this.state.object.totalDeath}
                     </span>
 
