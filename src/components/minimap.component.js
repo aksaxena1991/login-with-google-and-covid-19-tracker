@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-
+import Constants from '../constants/app.constants';
 class MiniMap extends Component {
+constants = null
     constructor(props)
   {
 
     super(props);
-    console.log(props);
+    this.constants = new Constants();
     this.state= {
       lat:0,
       lng:0,
@@ -20,9 +21,16 @@ class MiniMap extends Component {
     
   }
 geoCoder = () => {
+  if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {
-      this.setState({lat: position.coords.latitude, lng: position.coords.longitude})
-    });
+        this.setState({lat: position.coords.latitude, lng: position.coords.longitude})
+      });
+  } else {
+  this.constants.geoLocationByIP().then(data=> {
+    this.setState({lat: data.latitude, lng: data.longitude});
+  });
+}
+    
 }
 componentDidUpdate(prevProps, prevState) {
   

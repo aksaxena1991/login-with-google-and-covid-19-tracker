@@ -1,13 +1,13 @@
 
 import React, { Component} from 'react';
-
+import Constants  from '../constants/app.constants';
 class WorldMap extends Component {
-  
+  constants = null;
   constructor(props)
   {
 
     super(props);
-    
+    this.constants = new Constants();
     this.state= {
       lat:0,
       lng:0,
@@ -22,9 +22,16 @@ class WorldMap extends Component {
     
   }
 geoCoder = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition((position) => {
       this.setState({lat: position.coords.latitude, lng: position.coords.longitude})
     });
+    } else {
+  this.constants.geoLocationByIP().then(data=> {
+    this.setState({lat: data.latitude, lng: data.longitude});
+  });
+}
+    
 }
 componentDidUpdate(prevProps, prevState) {
   
