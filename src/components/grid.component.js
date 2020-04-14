@@ -123,7 +123,7 @@ class Grid extends Component {
         return (
            
                 <MDBRow tag="div" style={{  marginTop: "0.5%" }}>
-                    <div className="col-12 col-lg-4" style={{overflowY: 'scroll', height:'40rem'}}>
+                    <div className = "col-12 col-lg-4 scrollbar" style = {{overflowY: 'scroll', height:'40rem'}}id = "style-2" >
                         <h4>Corona (Covid-19) Impacted Union Territories & Provinces of India</h4>
                         <ListItems gridData={this.state.gridData}/>
                     </div>
