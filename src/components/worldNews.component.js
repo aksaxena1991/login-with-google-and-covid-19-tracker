@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import WorldMap from './worldMap.component';
-
+import {MDBBox, MDBRow} from 'mdbreact';
 class WorldNews extends Component {
   
   constructor(props)
@@ -21,13 +21,13 @@ this.setState({coordinatedData: nextProps.coordinatedData});
   render(){
     
     return(
-      <div className="container-fluid" style={{marginTop: "1%"}}>
+      <MDBRow style={{  marginTop: "0.5%" }}>
         {this.state.coordinatedData.length > 0 && 
          <WorldMap coordinatedData={this.state.coordinatedData}/>
         }
          
         
-      </div>
+      </MDBRow>
     );
   }
 }

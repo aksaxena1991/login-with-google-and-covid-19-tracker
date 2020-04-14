@@ -56,7 +56,7 @@ window.L.marker([this.state.lat, this.state.lng], {icon: window.L.mapbox.marker.
   render(){
     
     return(
-      <div id="minimap" style={{ height: '65vh',width:'99vw', background: 'grey' }} ></div>
+      <div id="minimap" style={{ height: '78vh',width:'100%', background: 'grey' }} ></div>
       );
   }
 }

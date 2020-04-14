@@ -121,22 +121,22 @@ class Grid extends Component {
     
     render() {
         return (
-            <MDBBox className="container-fluid" style = {{ width: "100%", marginTop: "1%" }}>
-                <MDBRow tag="div">
-                    <MDBBox className="col-12 col-lg-6 col-xl">
+           
+                <MDBRow tag="div" style={{  marginTop: "0.5%" }}>
+                    <div className="col-12 col-lg-4" style={{overflowY: 'scroll', height:'40rem'}}>
                         <h4>Corona (Covid-19) Impacted Union Territories & Provinces of India</h4>
                         <ListItems gridData={this.state.gridData}/>
-                    </MDBBox>
-                    <MDBBox className="col-12 col-lg-6 col-xl">
+                    </div>
+                    <div className="col-12 col-lg-4">
                         <h4>Corona (Covid-19) Impacted Districts according to their province name</h4>
                         <MiniMap mapData={this.state.gridData}/>
-                    </MDBBox>
-                    <MDBBox className="col-12 col-lg-6 col-xl">
+                    </div>
+                    <div className="col-12 col-lg-4">
                         <h4>Visualization of Corona (Covid-19) Impacted Districts according to their province name</h4>
                         <Graph/>
-                    </MDBBox>
+                    </div>
                 </MDBRow>
-            </MDBBox>
+            
                 );
 }
 }
