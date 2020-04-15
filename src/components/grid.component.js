@@ -14,6 +14,7 @@ const expendable = (evt) => {
 }
 
 function ListItems(props) { 
+    
     if(props.gridData === undefined || props.gridData === null || !Array.isArray(props.gridData)) {
       return null;
     }
@@ -21,7 +22,8 @@ function ListItems(props) {
                 <div key={"_greatgrandparent"+key}>
                     <div className="list-group-item " key={"grandparent_sibling"+key} onClick={(evt) => {
                        expendable(evt);
-                        }}>
+                       props.triggerEvent(val)
+                        }} >
                             {val.state}
                         
                     </div>
@@ -69,14 +71,17 @@ class Grid extends Component {
     constructor(props) {
         super(props);
         this.counter = 0;
+        this.singleStateData = null;
         this.state = {
             gridData: [],
+            singleStateData:null
             
         };
         
         
     }
     componentDidUpdate(props){
+        console.log(this.singleStateData);
         if(props.stateDistrictData !== null & props.stateDistrictData !== undefined) {
             this.counter++;
             if(this.counter == 1) {
@@ -118,6 +123,11 @@ class Grid extends Component {
 
 
     }
+    customEventListener = (val) => {
+    this.singleStateData = val;
+        
+    };
+    minimapFunction =() =>{}
     
     render() {
         return (
@@ -125,11 +135,11 @@ class Grid extends Component {
                 <MDBRow tag="div" style={{  marginTop: "0.5%" }}>
                     <div className = "col-12 col-lg-4 scrollbar" style = {{overflowY: 'scroll', height:'40rem'}}id = "style-2" >
                         <h4>Corona (Covid-19) Impacted Union Territories & Provinces of India</h4>
-                        <ListItems gridData={this.state.gridData}/>
+                        <ListItems gridData={this.state.gridData} triggerEvent={this.customEventListener}/>
                     </div>
                     <div className="col-12 col-lg-4">
                         <h4>Corona (Covid-19) Impacted Districts according to their province name</h4>
-                        <MiniMap mapData={this.state.gridData}/>
+                        <MiniMap mapData={this.state.gridData} singleStateData={this.singleStateData}/>
                     </div>
                     <div className="col-12 col-lg-4">
                         <h4>Visualization of Corona (Covid-19) Impacted Districts according to their province name</h4>
