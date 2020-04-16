@@ -67,11 +67,11 @@ function ListItems(props) {
     
 }
 class Grid extends Component {
-    
+singleStateData = null;
     constructor(props) {
         super(props);
         this.counter = 0;
-        this.singleStateData = null;
+        
         this.state = {
             gridData: [],
             singleStateData:null
@@ -81,7 +81,7 @@ class Grid extends Component {
         
     }
     componentDidUpdate(props){
-        console.log(this.singleStateData);
+        
         if(props.stateDistrictData !== null & props.stateDistrictData !== undefined) {
             this.counter++;
             if(this.counter == 1) {
@@ -125,9 +125,9 @@ class Grid extends Component {
     }
     customEventListener = (val) => {
     this.singleStateData = val;
-        
+    this.setState({singleStateData:this.singleStateData});
     };
-    minimapFunction =() =>{}
+    
     
     render() {
         return (
@@ -139,7 +139,7 @@ class Grid extends Component {
                     </div>
                     <div className="col-12 col-lg-4">
                         <h4>Corona (Covid-19) Impacted Districts according to their province name</h4>
-                        <MiniMap mapData={this.state.gridData} singleStateData={this.singleStateData}/>
+                        <MiniMap mapData={this.state.gridData} singleStateData={this.state.singleStateData}/>
                     </div>
                     <div className="col-12 col-lg-4">
                         <h4>Visualization of Corona (Covid-19) Impacted Districts according to their province name</h4>
