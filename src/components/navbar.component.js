@@ -25,7 +25,7 @@ render() {
     
       <MDBNavbar color="default-color" dark expand="md">
         <MDBNavbarBrand>
-          <Link className="white-text" to={"/sign-in"}>
+          <Link className="white-text" to={"/"}>
             <strong>Covid 19 Tracker</strong>
           </Link>
 
@@ -35,7 +35,7 @@ render() {
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
             <MDBNavItem active>
-              <MDBNavLink to="#!">Home</MDBNavLink>
+              <MDBNavLink to={'/newsfeed'}>Latest Corona News</MDBNavLink>
             </MDBNavItem>
           </MDBNavbarNav>
           <MDBNavbarNav right>

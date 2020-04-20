@@ -2,22 +2,27 @@ import React, { Component } from 'react';
 
 import './App.css';
 import "./styles.css";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {Route, Redirect} from "react-router-dom";
 import Login from "./components/login.component";
 import SignUp from "./components/signup.component";
 import Home from "./components/home.component";
+import CustomNavbar from "./components/navbar.component";
+import NewsFeed from "./components/newsfeed.component";
+import {MDBBox} from 'mdbreact';
 class App extends Component{
     render(){
       return(
-      <Router>
-        <Switch>
-          <Route exact path='/' component={Home}/>
-          <Route path="/sign-in" component={Login}/>
-          <Route path="/sign-up" component={SignUp}/>
-          <Route path="/home" component={Home}/>
-        </Switch>
-      </Router>
-        );
+          <div>
+            <Route exact path='/' render={() => <Redirect to='/' />} />
+            <Route exact path="/sign-in" component={Login}/>
+            <Route exact path="/sign-up" component={SignUp}/>
+            <MDBBox tag="div">
+            <CustomNavbar/>
+              <Route exact path="/" component={Home}/>
+              <Route exact path="/newsfeed" component={NewsFeed}/>
+            </MDBBox>
+          </div>
+      );
     }
 }
 export default App;

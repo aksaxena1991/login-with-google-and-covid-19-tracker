@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import Chart from "react-google-charts";
-import CustomNavbar from "./navbar.component";
 import { MDBBox, MDBRow } from 'mdbreact';
 import WorldNews from './worldNews.component';
 import Grid from './grid.component';
@@ -61,11 +60,12 @@ class Home extends Component {
     state.object.totalDeath = +parseInt(item.totaldeceased);
     state.object.totalRecovered = +parseInt(item.totalrecovered);
     this.setState({state});
-    // console.log(parseInt(item.totalconfirmed));
+    
     this.titleChartTotalCasesData.push([key, parseInt(item.totalconfirmed)]);
     this.titleChartDailyDeathData.push([key,parseInt(item.totaldeceased)])
     this.titleChartDailyRecoveredData.push([key,parseInt(item.totalrecovered)])
     this.titleChartDailyActiveData.push([key, (parseInt(item.totalconfirmed) - parseInt(item.totalrecovered) - parseInt(item.totaldeceased))])
+    return true;
   });
   
   
@@ -148,10 +148,7 @@ if ((this.state.data.stateData != null) && (this.state.data.stateDistrictData !=
   render(){
 
     return(
-    <MDBBox tag="div">
-    
-       <CustomNavbar/>
-      <MDBBox className="container-fluid" style = {{ width: "100%", marginTop: "1%" }} >
+     <MDBBox className="container-fluid" style = {{ width: "100%", marginTop: "1%" }} >
         
          
           {
@@ -381,7 +378,10 @@ if ((this.state.data.stateData != null) && (this.state.data.stateDistrictData !=
           <Grid stateDistrictData={this.state.data.stateDistrictData}/>
         }
       </MDBBox>
-    </MDBBox>);
+    
+    
+    
+      );
   }
 }
 export default Home;

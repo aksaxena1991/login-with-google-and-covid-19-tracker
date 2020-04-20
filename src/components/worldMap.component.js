@@ -22,15 +22,11 @@ class WorldMap extends Component {
     
   }
 geoCoder = () => {
-    if(navigator.geolocation){
-      navigator.geolocation.getCurrentPosition((position) => {
-      this.setState({lat: position.coords.latitude, lng: position.coords.longitude})
-    });
-    } else {
-  this.constants.geoLocationByIP().then(data=> {
+     
+this.constants.geoLocationByIP().then(data=> {
+  
     this.setState({lat: data.latitude, lng: data.longitude});
   });
-}
     
 }
 componentDidUpdate(prevProps, prevState) {
