@@ -5,7 +5,7 @@ import "./styles.css";
 import {Route, Redirect} from "react-router-dom";
 import Login from "./components/login.component";
 import SignUp from "./components/signup.component";
-import Home from "./components/home.component";
+import Home from "./components/stateFull/home.statefull";
 import CustomNavbar from "./components/navbar.component";
 import NewsFeed from "./components/newsfeed.component";
 import {MDBBox} from 'mdbreact';

@@ -30,6 +30,42 @@ class Constants {
             return res.data;
         });
     }
+    allIndiaStateData = () => {
+        return axios({
+            "method":"GET",
+            "url":"https://covid-19-india-data-by-zt.p.rapidapi.com/GetIndiaStateWiseData",
+            "headers":{
+                "content-type":"application/octet-stream",
+                "x-rapidapi-host":"covid-19-india-data-by-zt.p.rapidapi.com",
+                "x-rapidapi-key":"4afa9d804fmshb82f26d7850288fp1fe303jsn995d5ec4f72c"
+            }
+            })
+            .then((response)=>{
+            return response.data.data;
+            })
+            .catch((error)=>{
+            console.log(error)
+            })
+    }
+    stateDistrictData = (stateCode) => {
+        return axios({
+            "method":"GET",
+            "url":"https://covid-19-india-data-by-zt.p.rapidapi.com/GetIndiaDistrictWiseDataForState",
+            "headers":{
+            "content-type":"application/octet-stream",
+            "x-rapidapi-host":"covid-19-india-data-by-zt.p.rapidapi.com",
+            "x-rapidapi-key":"4afa9d804fmshb82f26d7850288fp1fe303jsn995d5ec4f72c"
+            },"params":{
+            "statecode":stateCode
+            }
+        })
+        .then((response)=>{
+        return response.data.data
+        })
+        .catch((error)=>{
+        console.log(error)
+        })
+    }
 
 }
 export default Constants;
