@@ -49,7 +49,7 @@ function ListItems(props) {
                                         <tbody>
                                             <tr>
                                                 <td>{val2.data.confirmed}</td>
-                                                <td>New <span className="badge badge-danger">{val2.data.delta.confirmed}</span></td>
+                                                <td>New <span className="badge badge-danger">0</span></td>
                                                 <td>{val2.data.lastupdatedtime}</td>
                                             </tr>
                                         </tbody>
